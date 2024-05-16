@@ -38,7 +38,8 @@ jobs:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
   # This workflow contains a single job called "build"
-  tabelas:
+  arroz-basmati:
+    environment: Teste
     needs: build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -52,5 +53,4 @@ jobs:
         run: |
           sudo apt update
           sudo apt -y install postgresql-client
-          PGPASSWORD=${{secrets.PGPASSWORD}} psql -U ${{secrets.USER_PG}} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mp -f database-mp.sql
-          
+          PGPASSWORD=${{ secrets.PGPASSWORD }} psql -U ${{ secrets.USER_PG }} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mp -i tabela.sql
